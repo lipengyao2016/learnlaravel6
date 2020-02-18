@@ -41,10 +41,7 @@ Route::middleware(['auth:teacher,api' /*'multiauth:teacher'*//*,'auth:api'*/ /*'
     Route::get('/get-details', 'Api\PassportController@getDetails');
 });
 
-Route::post('android_msg_push', 'Api\MiPushController@android_msg_push');
-
-Route::post('ios_msg_push', 'Api\MiPushController@ios_msg_push');
-
+Route::post('mi_msg_push', 'Api\MiPushController@mi_msg_push');
 
 
 Route::post('all_msg_push', 'Api\MiPushController@all_msg_push');

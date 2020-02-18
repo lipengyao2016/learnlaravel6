@@ -26,8 +26,6 @@ use Illuminate\Support\Facades\Cache;
 
 
 
-
-
 class MiPushController extends Controller
 {
 
@@ -45,42 +43,24 @@ class MiPushController extends Controller
  *
  * @return \Illuminate\Http\Response
  */
-    public function android_msg_push(Request $request)
+    public function mi_msg_push(Request $request)
     {
         $data = $request->all();
 
+        $aliasList = isset($data['uid'])  ? $data['uid'] : [];
+        $title = isset($data['title']) ? $data['title'] : '';
+        $desc = isset($data['desc']) ? $data['desc'] :'';
+        $content = isset($data['content']) ? $data['content'] :'';
+        $type = isset($data['type']) ? $data['type'] : MiPushConstant::$push_mode_alias;
 
-        $aliasList = $data['uid'];
-        $title = $data['title'];
-        $desc = $data['desc'];
-        $content = $data['content'];
+        $platform = isset($data['platform']) ? $data['platform'] : MiPushConstant::$platform_android;
 
-
-        Log::debug(__METHOD__.' $data:'.json_encode($data));
-        return AndroidMsgPush::alias_push($aliasList,$title,$desc,$content);
-    }
-
-
-
-    /**
-     * login api
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function ios_msg_push(Request $request)
-    {
-        $data = $request->all();
-
-
-        $aliasList = $data['uid'];
-        $title = $data['title'];
-        $desc = $data['desc'];
-        $content = $data['content'];
-
+        $bPassThrough = isset($data['bPassThrough']) ? ($data['bPassThrough'] == 1) : false;
 
         Log::debug(__METHOD__.' $data:'.json_encode($data));
-        return IosMsgPush::alias_push($aliasList,$title,$desc,$content);
+        return MiMsgPushService::msg_push($platform,$title,$desc,$content,$type,$bPassThrough,$aliasList);
     }
+
 
     /**
      * login api
@@ -99,8 +79,8 @@ class MiPushController extends Controller
 
 
         Log::debug(__METHOD__.' $data:'.json_encode($data));
-        $androidPushRet =  AndroidMsgPush::alias_push($aliasList,$title,$desc,$content);
-        $iosPushRet =  IosMsgPush::alias_push($aliasList,$title,$desc,$content);
+        $androidPushRet =  AndroidMiMsgPush::alias_push($aliasList,$title,$desc,$content);
+        $iosPushRet =  IosMiMsgPush::alias_push($aliasList,$title,$desc,$content);
         return ['androidPushRet' => $androidPushRet,'iosPushRet' =>$iosPushRet];
     }
 
