@@ -89,6 +89,8 @@ class HttpBase {
         $server = ServerSwitch::getInstance()->selectServer($requestPath, $this->region, $this->isVip);
         $url = $this->buildFullRequestURL($server, $requestPath);
 
+        print_r(__METHOD__.' url:'.$url.' $method:'.$method);
+
         $headers = array('Authorization: key=' . $this->appSecret,
             'Content-Type: application/x-www-form-urlencoded;charset=UTF-8',
             Constants::X_PUSH_SDK_VERSION . ': ' . Constants::SDK_VERSION);

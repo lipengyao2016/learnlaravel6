@@ -108,3 +108,39 @@ function curl($url, $params = false, $ispost = 0, $https = 0,$ApiToken = '',$use
     curl_close($ch);
     return $response;
 }
+
+ function filter_yaoqingma($yaoiqngma,$type){
+    $arr = ['1'=>'t','2'=>'u','0'=>'v','i'=>'w','o'=>'s','l'=>'y'];
+    if($type==2){
+        $arr = array_flip($arr);
+    }
+    $zuhe = '';
+    for ($i=0;$i<strlen($yaoiqngma);$i++){
+        if(isset($arr[$yaoiqngma[$i]])){
+            $zuhe .=$arr[$yaoiqngma[$i]];
+        }else{
+            $zuhe .= $yaoiqngma[$i];
+        }
+    }
+    return $zuhe;
+}
+
+  function getUidCode($uid){
+    $length = strlen($uid);
+    $sub = 9-($length+1);
+    $substr = substr('10000000',0,$sub);
+    $uid = $substr.$uid.$length;
+    $_yaoqingma = base_convert($uid,10,29);
+    return filter_yaoqingma($_yaoqingma,1);
+}
+
+function parserCode($code){
+    $yaoqingma = filter_yaoqingma($code,2);
+    print_r($yaoqingma.PHP_EOL);
+    $num = base_convert($yaoqingma,29,10);
+    print_r($num.PHP_EOL);
+    $len = substr($num,-1)+1;
+    $_uid = substr($num,-$len,$len);
+    $uid = substr($_uid,0,$len-1);
+    return $uid;
+}
