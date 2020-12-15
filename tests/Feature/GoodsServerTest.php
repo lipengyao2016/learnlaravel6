@@ -9,18 +9,19 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Log;
 class GoodsServerTest extends TestCase
 {
-    //user token
-   // public $accessToken  = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImY1ZWQwODhmZTlmY2ZmMTAyNDY0MjRiNzcwN2Y1M2RiNTE1OTdjMTQ1OWE4ZTVlNzY1N2EwYzk3OTc0ZDdjN2I2OWM4ZGIwMGNlOTUwMjZmIn0.eyJhdWQiOiIyIiwianRpIjoiZjVlZDA4OGZlOWZjZmYxMDI0NjQyNGI3NzA3ZjUzZGI1MTU5N2MxNDU5YThlNWU3NjU3YTBjOTc5NzRkN2M3YjY5YzhkYjAwY2U5NTAyNmYiLCJpYXQiOjE1NjkyMjI0MjUsIm5iZiI6MTU2OTIyMjQyNSwiZXhwIjoxNTcwNTE4NDI1LCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.GCWbPiTr0JMxN0moukisd8L-UZfiHXbQEeFZLUou3Wv7JK-IzCaNL7-rsKn2MXP02keA96pKyniqWmgU3j7OnZiQXXqzepXxcaYIMpXxuyWZmJTECHo9wyjrC9lusF-vTIjXxBslevxSf1-XyySXpMC1Z_ezIpet0cZruyGGCyw1ht_Bve1WubRbu8gB3qAPaQ0y4k19gC1vSvqEekgUZAig-gWGhE8zsPHQ5INd4qA7nckB1EwXLhnTh-zKmYoJs5nzJV_ei3qGDNMxRqbyvjiBMctdLXXIb4NjrT2-VEGSkltKWysAQzMBmLH6aZuNl4853RSnNuG40zVW3Rol5WJytsIWprYEnKWeHUoPaCcnMXyA2ir_5JqoqR8gssVpX01KZtd7BDHsQYuJhViAWhCQoVvQhDOrkwnDR2PY1xSUjQfkod-wgjWiueTH_TEJAl-zorwO7q6ltjIgJeEb2-qJFMfHHOh0AH_-Dqckrp-ETh5M1C8lrRq1_1VoTJlmHUmsdKQb7rn2DS-jqfR4gK3rTjWDWNrvf_oAu86J9wPvrev4cc8IfDrbvlpLOnGMMmQ5BZAI2g0RelkxfgoPuXxgr6aChFQx2watKuIaSrOglPNNx3zaHiko8-EA-g6QdPmHZr-h7J0LJohAi2aDyDZSgU672I_MXNYpW4uS4bE';
 
-    //teacher token
-    public  $accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0LnNxa2RqLmNvbVwvdXNlclwvdG9rZW4iLCJpYXQiOjE1ODA3MDMxNDgsImV4cCI6MTY0MDcwMzA4OCwibmJmIjoxNTgwNzAzMTQ4LCJqdGkiOiJEZ1RrZlVzd0tiWlRZWWNqIiwic3ViIjoxODE4LCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.aR3RbeDFJqmO6YWPzNeQ_7THtUVwshNK6t4_DeXCOgc';
 
-   public  $host = 'http://127.0.0.1:8010';
-  //public  $host = 'http://test.sqkdj.com';
-  // public  $host = 'http://sj.gateway.com';
+    //prod token
+    public  $accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0LnNxa2RqLmNvbVwvdXNlclwvdG9rZW4iLCJpYXQiOjE2MDMyNzM2OTcsImV4cCI6MTY2MzI3MzYzNywibmJmIjoxNjAzMjczNjk3LCJqdGkiOiI0N1JrN1FiODNNSEthNVJWIiwic3ViIjo0NjU1MzksInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.1JXOYBvEPrdRruoZhCnDVahJroAx1n0D5J6v32PPf3I';
+
+    // test token
+   // public  $accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0LnNxa2RqLmNvbVwvdXNlclwvdG9rZW4iLCJpYXQiOjE1ODc2NDA3NTIsImV4cCI6MTY0NzY0MDY5MiwibmJmIjoxNTg3NjQwNzUyLCJqdGkiOiJqNE1vN3ZsNGkwbUNHT2YxIiwic3ViIjo1MiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.BEh37G9vcKL1xEPBu6d71JMZ1GwpJvMV2A8bFryjDUs';
+    // public  $host = 'http://127.0.0.1:8010';
+   public  $host = 'http://test.sqkdj.com';
+  //public  $host = 'http://sj.gateway.com';
    // public  $host = 'http://120.77.228.81';
 
- // public  $host = 'http://api.sqkdj.com';
+//  public  $host = 'http://api.sqkdj.com';
 
    // public  $host = 'http://120.77.46.183:31001';
 
@@ -63,6 +64,17 @@ class GoodsServerTest extends TestCase
         $response = curl($this->host.'/open/v1/goods/pddGoodsImport',$loginData,1);
     }
 
+    public function testCustom_push()
+    {
+        $loginData = [
+            'uid' => 465539,
+            'title'=> '天然皂粉',
+            'content'=> "<div>5斤券后仅9.9元皂粉刺激性更低、不伤手xx</div>",
+        ];
+        print_r(json_encode($loginData));
+        $response = curl($this->host.'/open/v1/custom_push',$loginData,1);
+    }
+
     public function testImportDtkGoods()
     {
         $loginData = [
@@ -79,40 +91,84 @@ class GoodsServerTest extends TestCase
             'page_no' =>1,
             'limit' => 10,
            //  'title' =>'法国原装进口 布瑞弗尼4段儿童配方牛奶200ml*6支*2 盒',
-            'plate' => 'quan',
-          //  'cid' => 10022,
+            'plate' => 'recommend',
+        //    'cid' => 2,
          /*   'order_by' => 'sort',  //sell,price
             'sort_by' => 'desc',*/
            'item_source'=>1,
-           // 'price_zone_type' => 2,
+          //  'price_zone_type' => 1,
            // 'has_coupon' => 'true',
-            //'user_defined' =>3425,
+           // 'user_defined' =>3506,
         ];
         print_r(json_encode($loginData));
-        $response = curl($this->host.'/app/v1/local_goods',$loginData,0,0,null,$this->accessToken);
+      //  $response = curl($this->host.'/app/v1/local_goods',$loginData,0,0,null,$this->accessToken);
+
+        $cmd = 'local_goods';
+        $method = 'get';
+        $response =AikAppReq::sendReq($this->host.'/app/v1/',$loginData,$cmd,$method,$this->accessToken);
     }
 
     public function testGetGoodsDetails()
     {
         $loginData = [
             'goods_id' => '607365558342',//
-          //  'is_network_commodity'=>1,
+            'is_network_commodity'=>1,
             'item_source'=>1,
         ];
         print_r(json_encode($loginData));
-        $response = curl($this->host.'/app/v1/goods/detail',$loginData,0,0,null,$this->accessToken);
+      //  $response = curl($this->host.'/app/v1/goods/detail',$loginData,0,0,null,$this->accessToken);
+
+        $cmd = 'goods/detail';
+        $method = 'get';
+        $response =AikAppReq::sendReq($this->host.'/app/v1/',$loginData,$cmd,$method,$this->accessToken);
+
+    }
+
+    public function testGetOpenGoodsDetails()
+    {
+        $loginData = [
+            'goods_id' => '608769703130',//
+             'is_network_commodity'=>1,
+            'item_source'=>1,
+        ];
+        print_r(json_encode($loginData));
+        //  $response = curl($this->host.'/app/v1/goods/detail',$loginData,0,0,null,$this->accessToken);
+
+        $cmd = 'goods/detail';
+        $method = 'get';
+        $response =AikAppReq::sendReq($this->host.'/open/v1/',$loginData,$cmd,$method,$this->accessToken);
+
+    }
+
+
+
+    public function testGetGoodsLocalCoupon()
+    {
+        $loginData = [
+            'goods_id' => '524078440321',//
+            'item_source'=>1,
+        ];
+        print_r(json_encode($loginData));
+          $response = curl($this->host.'/open/v1/goods/local_coupon',$loginData,0,0,null,$this->accessToken);
+
+//        $cmd = '/goods/local_coupon';
+//        $method = 'get';
+//        $response =AikAppReq::sendReq($this->host.'/open/v1',$loginData,$cmd,$method,$this->accessToken);
+
     }
 
     public function testSearchOnlineGoods()
     {
         $loginData = [
-            'has_coupon' => 'true',
+            'has_coupon' => 'false',
             'page_no'=>1,
           // 'keyword'=>'https://item.taobao.com/item.htm?id=521182368686',
            // 'keyword'=>'keyword=【】https://m.tb.cn/h.3qQQxl1?sm=1a2abb 点击链接，再选择浏览器咑閞；或復·制这段描述￥Z2BCboEUxqn￥后到淘♂寳♀　　',
-            'keyword'=>'丹麦蓝罐曲奇饼干908g礼盒装皇室牛油风味办公休闲早餐零食年货',
-            'source'=>3,
-            'sort'=>'sales_asc',
+            'keyword'=>'2020夏季童装纯棉工厂直销纯色儿童马卡龙短袖爆款百搭童t恤',
+//            'keyword'=>'德国汉佳欧斯（HanJiaOurs）绞肉机电动绞肉机家用多功能绞馅机搅肉机绞菜机碎肉婴儿辅食机料理机 XD271【2L玻璃碗】',
+           // 'keyword'=>'衣服',
+            'source'=>1,
+           // 'sort'=>'sales_asc',
         ];
         print_r(json_encode($loginData));
         $response = curl($this->host.'/app/v1/goods/search',$loginData,0,0,null,$this->accessToken);
@@ -131,7 +187,7 @@ class GoodsServerTest extends TestCase
     public function testGetRecommendGoods()
     {
         $loginData = [
-            'goods_id' => '520224267132',
+            'goods_id' => '39222083238',
             'item_source'=>1,
         ];
         print_r(json_encode($loginData));
@@ -142,9 +198,9 @@ class GoodsServerTest extends TestCase
     {
         $loginData = [
             'item_source' => 1,
-            'commission_rate' => 0.19,
-            'goods_id' => '610200494103',
-            'use_coupon_price' => 103,
+            'commission_rate' => 0.0079,
+            'goods_id' => '607365558342',
+            'use_coupon_price' => 39,
         ];
         print_r(json_encode($loginData));
         $response = curl($this->host.'/app/v1/goods/hint_info',$loginData,0,0,null,$this->accessToken);
@@ -186,7 +242,7 @@ class GoodsServerTest extends TestCase
     public function testUpdateOneGoods()
     {
         $loginData = [
-            'goods_id' => '590084304040',
+            'goods_id' => '571172617757',
             'item_source' => 1,
         ];
         print_r(json_encode($loginData));
@@ -296,4 +352,22 @@ class GoodsServerTest extends TestCase
         print_r(json_encode($loginData));
         $response = curl($this->host.'/open/v1/goods/getActivityGoods',$loginData,1);
     }
+
+    public function testOpenLocalGoods()
+    {
+        $loginData = [
+            'page_no' =>2,
+            'limit' => 10,
+            //  'title' =>'法国原装进口 布瑞弗尼4段儿童配方牛奶200ml*6支*2 盒',
+              'section' => 'cheap_mail',
+               'order_by' => 'use_coupon_price',  //volume,use_coupon_price
+               'sort_by' => 'asc',
+             'item_source'=>1,
+             'has_coupon' => 1,
+        ];
+        print_r(json_encode($loginData));
+        $response = curl($this->host.'/open/v1/local_goods',$loginData,0,0,null,$this->accessToken);
+    }
+
+
 }

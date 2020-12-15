@@ -13,6 +13,8 @@ class MiPushTest extends TestCase
 
     //teacher token
     public  $accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjI0NzFkM2I3MTQzY2VmYWFiYTM2ODI5MzAwZWI4M2M5MDk3NjEyZTMwYmYxYjQ5ZjhiZGZiM2UxZTNkY2U3NDU5M2EyOTJiZDUyNWJhYmEyIn0.eyJhdWQiOiIyIiwianRpIjoiMjQ3MWQzYjcxNDNjZWZhYWJhMzY4MjkzMDBlYjgzYzkwOTc2MTJlMzBiZjFiNDlmOGJkZmIzZTFlM2RjZTc0NTkzYTI5MmJkNTI1YmFiYTIiLCJpYXQiOjE1NjkyMjMyOTYsIm5iZiI6MTU2OTIyMzI5NiwiZXhwIjoxNTcwNTE5Mjk2LCJzdWIiOiIxMCIsInNjb3BlcyI6W119.MTcMh8tH9cAWW--yyFVBYDQ5j1GEODMA32RXK2cpMp8phbKiRRviPleTpJMFi1xVEOtxI4n1vx3MF7WJqXMVswmCNUzjSoYronJeCa3Csvo17itrwzhHjU2wN-yRRLHRoJOm2BPDeVFRIYUN0DzGKxUwqAFJJnNDyk8yV2TRyYhS5nKi0BsxnWUtn7DuZT4ei5W2pYVjfxdVi-Znh7BBUim16ipGQdmjWxzytJBEzuLz_6j8ixptkO3-uYFEUywV5hCaxVIa1GMVPJyEqbaUMpG3pcvnCqR3_qbuiGsv5yLMT_Py7OzpR7htFPh_4HJxDfPV_WPx2_y0V-zdZ1Hq-BpcaEEnmp22TQGOx9BNq_qHCtsiiZB9gH8fT7NAyJlvPPlWmuWGKmbAWjJUIjvnfr3DqkymDtggbOzw8z_vU0GW-J3Eybjznw5dhpd-IEtnzuk6K5cKGiROwtgh2CgqUjKk0N08ZWT4IyFBNjxI7kDdF1s_bjaFznidFE_baMjkTo7XVBn4_c-KaR1sl7fg-WaOCXlZqS3YmRxo_HlEFj6WpRw3b2Dyv9D9DpsMuAvVjlDMIOjMkMuSZ6FFxx6cMh_o8p2YSjx5u2ael1UMO8TkwrXJhK9XLjzGBhZTSJXFdxaaPOyDfH00G8xFSwz_QgdJ81aC0mxPzEW3jSbY4yE';
+
+    public  $host = 'http://www.akbao.com';
     /**
      * A basic test example.
      *
@@ -34,16 +36,17 @@ class MiPushTest extends TestCase
         ];
         $data = [
            'title' => 'test',
-           'desc' => 'akb android msg push 11',
+           'desc' => 'akb android msg push alias aa',
            'content' => [
-               'name' => 'ih xx 77',
-               'sec' => 'manxx'
+               'name' => '有新爆款aa',
+             //  'sec' => 'manxx'
            ],
-//           'type' => 'alias_push',
-//            'uid' => [ '519406'],
+           'type' => 'alias_push',
+            'uid' => ['11706825'],
 
-           'type' => 'topic_push',
-            'uid' => 'jx_information',
+
+//           'type' => 'topic_push',
+//            'uid' => 'jx_information',
 
           /*  'type' => 'all_push',
             */
@@ -123,5 +126,54 @@ class MiPushTest extends TestCase
         $response->assertStatus(200);
     }
 
+    public function testIncomeMessageSends()
+    {
+        $bodyData = [
+            'title'=>'拒绝申请升级通知11！',
+            'body'=>'未达到条件11!',
+            'operation'=>9,
+        ];
+
+        $paramData = [
+            'laiyuan' => 4,
+            'uid' => 11706825,
+            'title'=>4,
+            'money'=>24,
+            'trade_id'=>2020022808
+        ];
+        print_r(json_encode($bodyData));
+        $response = curl($this->host.'/wap/activity/messageSends'.'?'.http_build_query($paramData)
+            ,$bodyData,1,0,null,$this->accessToken);
+    }
+
+    public function testSystemMessageSends()
+    {
+        $bodyData = [
+            'title'=>'系统消息！',
+            'body'=>'系统消息!',
+        ];
+
+        $paramData = [
+            'laiyuan' => 2,
+        ];
+        print_r(json_encode($bodyData));
+        $response = curl($this->host.'/wap/activity/messageSends'.'?'.http_build_query($paramData)
+            ,$bodyData,1,0,null,$this->accessToken);
+    }
+
+    public function testJingXuanMessageSends()
+    {
+        $bodyData = [
+            'title'=>'精选消息dd！',
+            'body'=>'精选商品来了dd!',
+        ];
+
+        $paramData = [
+            'laiyuan' => 1,
+        ];
+        print_r(json_encode($bodyData));
+        $response = curl($this->host.'/wap/activity/messageSends'.'?'.http_build_query($paramData)
+            ,$bodyData,1,0,null,$this->accessToken);
+    }
 
 }

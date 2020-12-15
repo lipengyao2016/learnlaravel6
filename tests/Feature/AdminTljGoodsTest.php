@@ -15,19 +15,21 @@ class AdminTljGoodsTest extends TestCase
     //teacher token
     public  $accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0LnNxa2RqLmNvbVwvdXNlclwvdG9rZW4iLCJpYXQiOjE1Nzc2OTU1MDgsImV4cCI6MTYzNzY5NTQ0OCwibmJmIjoxNTc3Njk1NTA4LCJqdGkiOiJ2UjF1OEZMSEx2bHpvaXdOIiwic3ViIjo4NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.rpBm-8ToXVB8bGojbn_8QctAOudOn7Akd9_CQ4GeBII';
 
-    public  $host = 'http://127.0.0.1:8010';
- //  public  $host = 'http://test.sqkdj.com';
+  // public  $host = 'http://127.0.0.1:8010';
+  // public  $host = 'http://test.sqkdj.com';
   // public  $host = 'http://sj.gateway.com';
+
+    public  $host = 'http://api.sqkdj.com';
 
     public function testAddTljGoods()
     {
         $loginData = [
-            'data_id' =>'528603409322',
-            'free_title' =>'app_x12Glad美国佳能保鲜袋食品级PE袋保鲜膜加厚密封袋大小号家用套装',
+            'data_id' =>'603649193754',
+            'free_title' =>'果仁奶脆糖糖果结婚喜糖散装发批硬糖怀旧小零食小吃网红休闲食品cc',
             'target_population' =>2,
             'total_num' =>5,
-            'send_start_time' =>'2020-01-02 08:52:08',
-            'send_end_time' =>'2020-01-05 10:00:08',
+            'send_start_time' =>'2020-04-10 08:52:08',
+            'send_end_time' =>'2020-04-29 10:00:08',
      /*       'send_start_time' =>1577203200,
             'send_end_time' =>1577289600,*/
             'per_face' =>1,
@@ -66,10 +68,10 @@ class AdminTljGoodsTest extends TestCase
     {
         $loginData = [
             // 'free_title' =>'儿单',
-            'target_population' => 2,
+            //'target_population' => 1,
         ];
         print_r(json_encode($loginData));
-        $response = curl($this->host.'/app/v1/tljGoods',$loginData,0,0,null,$this->accessToken);
+        $response = curl($this->host.'/open/v1/tljGoods',$loginData,0,0,null,$this->accessToken);
     }
 
     public function testGetUnVisibleAppTljGoods()
@@ -96,11 +98,11 @@ class AdminTljGoodsTest extends TestCase
     public function testBuyTljGoods()
     {
         $loginData = [
-                'id' => 1507,
-                //'uid' => 203,
+                'id' => 6604,
+                'uid' => 85,
         ];
         print_r(json_encode($loginData));
-        $response = curl($this->host.'/app/v1/buyTljGoods',$loginData,1,0,null,$this->accessToken);
+        $response = curl($this->host.'/open/v1/buyTljGoods',$loginData,1,0,null,$this->accessToken);
     }
 
 
@@ -123,6 +125,28 @@ class AdminTljGoodsTest extends TestCase
         $response = curl($this->host.'/admin/v1/tlj_report',$loginData,1,0,null,$this->accessToken);
     }
 
+    public function testChange_shelf_status()
+    {
+        $loginData = [
+            'id' => 1563,
+            'is_visible' => 1,
+        ];
+        print_r(json_encode($loginData));
+        $response = curl($this->host.'/admin/v1/tljGoods/change_shelf_status',$loginData,1,0,null,null);
+    }
 
+    public function testEsSSearch()
+    {
+        $searchStr = '{
+  "query": {
+    "match": {
+      "title":  "玩具"
+    }
+  }
+}';
+        $searchQS = json_decode($searchStr,true);
+        print_r(json_encode($searchQS));
+        $response = curl('http://47.112.236.104:9200/akb_goods/_search',$searchQS,0,0,null,null);
+    }
 
 }

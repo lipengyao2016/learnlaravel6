@@ -48,4 +48,18 @@
       0 => 'SMartins\\PassportMultiauth\\Providers\\MultiauthServiceProvider',
     ),
   ),
+  'swooletw/laravel-swoole' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'SwooleTW\\Http\\LaravelServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Server' => 'SwooleTW\\Http\\Server\\Facades\\Server',
+      'Table' => 'SwooleTW\\Http\\Server\\Facades\\Table',
+      'Room' => 'SwooleTW\\Http\\Websocket\\Facades\\Room',
+      'Websocket' => 'SwooleTW\\Http\\Websocket\\Facades\\Websocket',
+    ),
+  ),
 );

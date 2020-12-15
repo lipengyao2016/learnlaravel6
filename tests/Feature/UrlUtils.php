@@ -33,8 +33,6 @@ class UrlUtils
         return preg_replace_callback("#\\\u([0-9a-f]+)#i",function($m){return iconv('UCS-2','UTF-8', pack('H4', $m[1]));},$str);
     }
 
-
-
     /**
      * curl 请求
      * @param $url
@@ -43,11 +41,10 @@ class UrlUtils
      */
     public static  function  curl($url, $headers,$params = false, $ispost = 0, $https = 0)
     {
-        Log::debug(__METHOD__.' url:'.$url.' ispost:'.$ispost.' params:'.json_encode($params));
+        print_r(__METHOD__.' url:'.$url.' ispost:'.$ispost.PHP_EOL);
       /*  $headers = array(
             "Content-type:application/json;charset=utf-8"
         );*/
-
         $httpInfo = array();
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
@@ -65,6 +62,7 @@ class UrlUtils
             curl_setopt($ch, CURLOPT_POST, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
             curl_setopt($ch, CURLOPT_URL, $url);
+            print_r(__METHOD__.' post url:'.$url.PHP_EOL);
         } else {
             if ($params) {
                 if (is_array($params)) {
@@ -74,26 +72,25 @@ class UrlUtils
             } else {
                 curl_setopt($ch, CURLOPT_URL, $url);
             }
+            print_r(__METHOD__.' get url:'.$url. '?' . $params.PHP_EOL);
         }
         $response = curl_exec($ch);
-
 
         $errorNo = curl_errno($ch);
         if ($errorNo)
         {
-            print_r(__METHOD__.' errorNo:'.$errorNo);
+            Log::debug(__METHOD__.' errorNo:'.$errorNo);
             throw new Exception(curl_error($ch),0);
         }
         else
         {
             $httpStatusCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             print_r(__METHOD__.' httpStatusCode:'.$httpStatusCode.PHP_EOL);
-            print_r(__METHOD__.' $response:'.$response.PHP_EOL);
-            $response = json_decode($response,true);
-            var_dump($response);
+            print_r(__METHOD__.' $response:'.self::decodeUnicode($response).PHP_EOL);
 
             if (200 !== $httpStatusCode && 201 != $httpStatusCode)
             {
+
                 throw new Exception($httpStatusCode);
             }
         }

@@ -213,8 +213,17 @@ class PassportController extends Controller
         Log::debug(__METHOD__.' ret:'.$ret);
 
         Log::debug(__METHOD__.' start!!!');
-        $user = Auth::user();
-        return response()->json(['success' => $user], $this->successStatus);
+        return ['ret' =>'ok'];
+        //$user = Auth::user();
+       // return response()->json(['success' => $user], $this->successStatus);
+    }
+
+    public function getDetails2()
+    {
+
+        return ['ret2' =>'ok2'];
+        //$user = Auth::user();
+        // return response()->json(['success' => $user], $this->successStatus);
     }
 
     public function logout()

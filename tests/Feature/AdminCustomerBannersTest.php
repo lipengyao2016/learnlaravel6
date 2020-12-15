@@ -15,17 +15,19 @@ class AdminCustomerBannersTest extends TestCase
     //teacher token
     public  $accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0LnNxa2RqLmNvbVwvdXNlclwvdG9rZW4iLCJpYXQiOjE1NzUzNjQ3NzMsImV4cCI6MTU3NTQ1MTE3MywibmJmIjoxNTc1MzY0NzczLCJqdGkiOiJNM09BRDZMUTZkOUlKOWlrIiwic3ViIjoxMDQsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.OYSU4Wp-UBQZpJqrzGvXMIocm-JZxrHpxqdRRxv3ruQ';
 
-    public  $host = 'http://127.0.0.1:8010';
+   // public  $host = 'http://127.0.0.1:8010';
    //public  $host = 'http://test.sqkdj.com';
    //public  $host = 'http://sj.gateway.com';
+
+    public  $host = 'http://api.sqkdj.com';
 
 
     public function testListCustomerBanners()
     {
         $loginData = [
             'page_no' =>1,
-            'limit' => 1,
-            'title' =>'测试',
+            'limit' => 100,
+           // 'title' =>'测试',
         ];
         print_r(json_encode($loginData));
         $response = curl($this->host.'/admin/v1/customer_banners',$loginData,0,0,null,null);
@@ -73,7 +75,7 @@ class AdminCustomerBannersTest extends TestCase
         $loginData = [
             'page_no' =>1,
             'limit' => 10,
-            'bankuai' => 3352,
+            'bankuai' => 3502,
            // 'cid' => 20,
           //  'item_source'=>2,
            // 'data_id' => '45031781719',

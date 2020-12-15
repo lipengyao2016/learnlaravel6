@@ -42,6 +42,7 @@ class AndroidMiMsgPush
 
     public static function buildMsg($title,$desc,$content,$bPassThrough = false)
     {
+        $content['time'] = time();
         $payload = json_encode($content);
         // message1 演示自定义的点击行为
         $message1 = new Builder();

@@ -16,11 +16,14 @@ class ExternServerTest extends TestCase
     //teacher token
     public  $accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0LnNxa2RqLmNvbVwvdXNlclwvdG9rZW4iLCJpYXQiOjE1Nzc5MzIzNTUsImV4cCI6MTYzNzkzMjI5NSwibmJmIjoxNTc3OTMyMzU1LCJqdGkiOiJIdkZpWUhoV0R6Wmh6cGdXIiwic3ViIjo4NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.XjLbAWsLeQSJJETVY0Z8W0WgzbCU_ttFwI4uY7l7hcc';
 
-    public  $host = 'http://127.0.0.1:8060';
+   // public  $host = 'http://127.0.0.1:8060';
   //  public  $host = 'http://test.sqkdj.com';
    // public  $host = 'http://sj.gateway.com';
 
-     public  $appPathPrex = '/app/v1';
+    public  $host = 'http://api.sqkdj.com';
+
+    // public  $host = 'http://120.77.46.183:31001';
+     public  $appPathPrex = '/open/v1';
 
      public  $adminPathPrex = '/admin/v1';
 
@@ -42,7 +45,7 @@ class ExternServerTest extends TestCase
             'type' => 100,
         ];
         print_r(json_encode($loginData));
-        $response = curl($this->host.'/sms/send_code',$loginData,1);
+        $response = curl($this->host.$this->appPathPrex.'/sms/send_code',$loginData,1);
     }
 
 

@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\Log;
 class FreeOrdersTest extends TestCase
 {
     //teacher token
-    public  $accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90ZXN0LnNxa2RqLmNvbVwvdXNlclwvdG9rZW4iLCJpYXQiOjE1NzY1NDY5NDgsImV4cCI6MTYzNjU0Njg4OCwibmJmIjoxNTc2NTQ2OTQ4LCJqdGkiOiJRVGN6Y1k2U2VhRUM2bENDIiwic3ViIjo4NSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.Ltcsj70q7HkvWRq3EObmttIZJqiOEWhOTK6SuAw5n1Y';
+    public  $accessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9hcGkuc3FrZGouY29tXC91c2VyXC90b2tlbiIsImlhdCI6MTU4MzEzNDkzMSwiZXhwIjoxNjQzMTM0ODcxLCJuYmYiOjE1ODMxMzQ5MzEsImp0aSI6IloxekJOTWxtY09FV2d2WVAiLCJzdWIiOjQ2NTUzOSwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.66HbGbXNShrxWPASAZvYDvKbseekcXFkiVLwDBk8UCA';
 
-    public  $host = 'http://127.0.0.1:8010';
+  //  public  $host = 'http://127.0.0.1:8010';
   // public  $host = 'http://test.sqkdj.com';
   // public  $host = 'http://sj.gateway.com';
 
+    public  $host = 'http://api.sqkdj.com';
 
 
     public function testImportFreeGoodsOrder()
@@ -70,7 +71,7 @@ class FreeOrdersTest extends TestCase
         ];
         print_r(json_encode($loginData));
 
-        $response = curl($this->host.'/app/v1/claimTrade',$loginData,0,0,null,$this->accessToken);
+        $response = curl($this->host.'/open/v1/claimTrade',$loginData,0,0,null,$this->accessToken);
     }
 
     public function testUpdateFreeGoodsOrder()
@@ -124,7 +125,7 @@ class FreeOrdersTest extends TestCase
         ];
         print_r(json_encode($loginData));
 
-        $response = curl($this->host.'/app/v1/freeGoodsOrder',$loginData,0,0,null,$this->accessToken);
+        $response = curl($this->host.'/open/v1/freeGoodsOrder',$loginData,0,0,null,$this->accessToken);
     }
 
     public function testListAdminFreeOrder()

@@ -2,14 +2,19 @@
 
 $rk = new RdKafka\Producer();
 print_r($rk);
-$rk->setLogLevel(LOG_DEBUG);
-$rk->addBrokers("47.107.246.243");
+$rk->addBrokers("47.112.111.193");
 
-$topic = $rk->newTopic("test1");
+$topic = $rk->newTopic("kafkaStorm");
 
 print_r($topic);
 
-for ($i = 3; $i < 4; $i++) {
-    $sendRet = $topic->produce(RD_KAFKA_PARTITION_UA, 0, json_encode(['value' => "data dt $i"]));
-    print_r(" sendRet:".$sendRet);
-}
+//$msgDataStr = '';
+//
+//$msgData = json_decode($msgDataStr,true);
+//
+////var_dump($msgData);
+//
+//$sendRet = $topic->produce(RD_KAFKA_PARTITION_UA, 0, json_encode($msgData));
+//print_r(" sendRet:".json_encode($sendRet));
+
+

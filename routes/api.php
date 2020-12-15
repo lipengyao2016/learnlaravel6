@@ -28,9 +28,12 @@ Route::middleware('multiauth:teacher')->get('/admin', function (Request $request
     return $request->user();
 });
 
-Route::group(['middleware'=>'auth:api'],function (){
+Route::group(['middleware'=>'throttle:200,1'],function (){
     Route::get('/passportUserInfo','Api\PassportController@getDetails');
 });
+Route::get('/passportUserInfo2','Api\PassportController@getDetails2');
+
+
 
 Route::group(['middleware' => 'auth:api'], function(){
    // Route::post('get-details', 'API\PassportController@getDetails');

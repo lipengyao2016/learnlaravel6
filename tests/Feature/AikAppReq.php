@@ -9,6 +9,8 @@
 namespace Tests\Feature;
 
 
+use SebastianBergmann\CodeCoverage\Report\PHP;
+
 class AikAppReq
 {
 
@@ -35,32 +37,46 @@ class AikAppReq
         $scode = json_encode($data);//转json字符串:{"type":"android","timestamp":1540380992,"uuid":"xfz178178","path":"article_types","method":"get","sign":"39f827fb8896d500d1eec5eac74df4f9"}
         print_r(' json scode:'.$scode);
         $scode = base64_encode($scode);//转base_64编码得到签名：eyJ0eXBlIjoiYW5kcm9pZCIsInRpbWVzdGFtcCI6MTU0MDM4MTAxMCwidXVpZCI6InhmejE3ODE3OCIsInBhdGgiOiJhcnRpY2xlX3R5cGVzIiwibWV0aG9kIjoiZ2V0Iiwic2lnbiI6IjQ3MWU3ZDhhNzRlNDQ1YjUxNGE1ZjM4YzczOWE5NmRjIn0=
-        //print_r(' base64 code:'.$scode);
+        print_r(' base64 code:'.$scode);
 
         return $scode;
     }
 
-    public static  function sendReq($rootUrl,$paramData,$cmd,$method,$userToken = null){
+    public static  function sendReq($rootUrl,$paramData,$cmd,$method,$userToken = null,$bNeedSign = true){
        // print_r(json_encode($paramData));
-        $sign = AikAppReq::sign($cmd,$method);
-        $paramData['path'] = $cmd;
-        $paramData['method'] = $method;
-
         $headers =  array(
             "Content-type:application/json;charset=utf-8",
             'Accept:application/json',
-            'ApiToken:'.$sign,
-            "user-agent:shengjian|868243039108516|Android|offical|1.8.9|219"
+           // 'ApiToken:'.$sign,
+            "user-agent:shengjian|868243039108516|ANDROID|offical|4.0|219"
+          //  'User-Agent:aikbao|865166024723960|Android|official|1.8.0|6177508|49997460|oppo|oppo a33|5.1.1'
         );
+
+        if($bNeedSign)
+        {
+            $sign = AikAppReq::sign($cmd,$method);
+            $paramData['path'] = $cmd;
+            $paramData['method'] = $method;
+            array_push($headers,  'ApiToken:' . $sign);
+        }
+
         if($userToken)
         {
             array_push($headers,  'Authorization:' . 'Bearer '.$userToken);
         }
 
-        var_dump($paramData);
 
+        var_dump($headers);
+
+
+        if(strcasecmp($method,'post') == 0)
+        {
+            $paramData = json_encode($paramData);
+        }
+        print_r(__METHOD__.json_encode($paramData).PHP_EOL);
         $response =UrlUtils::curl(($rootUrl.$cmd),$headers,$paramData,$method == 'post');
-        print_r( UrlUtils::decodeUnicode($response) );
+       // print_r(__METHOD__.$response.PHP_EOL);
+        var_dump(json_decode($response,true));
         return $response;
     }
 

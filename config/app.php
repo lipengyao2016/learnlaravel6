@@ -177,6 +177,8 @@ return [
         Laravel\Passport\PassportServiceProvider::class,
         App\Providers\MyCustomerServiceProvider::class,
        // "Laravel\\Passport\\PassportServiceProvider"
+
+        SwooleTW\Http\LaravelServiceProvider::class,
     ],
 
     /*

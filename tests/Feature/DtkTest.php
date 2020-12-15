@@ -136,13 +136,14 @@ class DtkTest extends TestCase
     public function testCreateTcCompany()
     {
         $data = [
-            'contact_name' =>'杨总33',
+            'contact_name' =>'杨总99',
             'name' =>'深圳市约范信息有限公司33',
             'phone' =>'13410987654',
             'province'=> '广东省',
             'city'=> '深圳市',
             'district'=> '宝安区',
             'address'=> '创业一路31号33',
+            'openid' => 'xxx'
         ];
         $url = 'http://api.youfun.shop/api/tc_companies';
         try {
@@ -166,6 +167,21 @@ class DtkTest extends TestCase
     }
 
 
+    public function testCreateTcCompanyContactLog()
+    {
+        $TcCompanyContactLogData = [
+            'company_id' =>1,
+            'operator_id' =>30,
+            'is_jietong' =>1,
+            'remark' => 'ttt2'
+        ];
+        $url = 'http://api.youfun.shop/api/tc_company_contact_log';
+        try {
+            $ret = curl($url, $TcCompanyContactLogData, 1, 0, null,null);
+        } catch (Exception $e) {
+        }
+        var_dump($ret);
+    }
 
 
 
